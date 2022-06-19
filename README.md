@@ -6,4 +6,4 @@
 ## [Link for Actions](https://github.com/HebaAlhamaydh/auth-api/actions)
 
 # UML
-![](./UML.png)
+![](./UML%203.png)
