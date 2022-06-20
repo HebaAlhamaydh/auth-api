@@ -67,13 +67,40 @@ describe('Auth Router', () => {
     expect(token).not.toBeDefined();
   });
 
-
   it('Secret Route fails with invalid token', async () => {
     const response = await mockRequest.get('/secretstuff')
       .set('Authorization', `bearer accessgranted`);
 
     expect(response.status).toBe(500);
   });
+});
+it('Should respond with 404 status on an invalid route', async () => {
+  const response = await mockRequest.get('/foo');
+  expect(response.status).toBe(404);
+});
+it('Should respond with 404 status on an invalid method', async () => {
+  const response = await mockRequest.patch('/v1/food');
+  expect(response.status).toBe(404);
+});
+  // test if can create a food item
+  it('can add a food item', async () => {
+    const response = await mockRequest.post('/v1/food').send({
+      name: 'abanana',
+      calories: '100',
+      type: 'fruit'
+    });
+    expect(response.status).toBe(201);
+  });
+ // test if can read a food item
+ it('can get all food items', async () => {
+  const response = await mockRequest.get('/v1/food');
+  expect(response.status).toBe(200);
+
+});
+// test if can read one food item
+it('can get one record', async () => {
+  const response = await mockRequest.get('/v1/food/1');
+  expect(response.status).toBe(200);
 });
 
 afterAll(async () => {
