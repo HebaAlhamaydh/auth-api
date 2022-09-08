@@ -5,6 +5,8 @@ require('dotenv').config();
 const { Sequelize, DataTypes } = require("sequelize");
 const foodModel = require('./food');
 const clothesModel  = require('./clothes');
+const productsModel  = require('./products');
+const categoriesModel  = require('./categories');
 const userModel=require('./users');
 const Collection =require('./data-collection');
 
@@ -27,8 +29,8 @@ let sequelize = new Sequelize(POSTGRES_URI, sequelizeOptions);
 
 const FoodTable = foodModel(sequelize, DataTypes);
 const clothesTable = clothesModel (sequelize, DataTypes);
-
-
+const productsTable = productsModel (sequelize, DataTypes);
+const categoriesTable = categoriesModel (sequelize, DataTypes);
 
 //  const usersCollection = new Collection(usersTable);
 
@@ -38,6 +40,8 @@ module.exports = {
     DataTypes:DataTypes,
     food:new Collection(FoodTable),
     clothes:new Collection(clothesTable),
+   products:new Collection(productsTable),
+   categories:new Collection(categoriesTable),
     Users:userModel(sequelize, DataTypes)
 };
 
