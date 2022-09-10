@@ -17,13 +17,15 @@ const v1Routes=require("./routes/v1");
 const v2Router=require("./routes/v2");
 
 app.use(express.json());
-app.use(
-    cors({
-      origin: 'http://localhost:3000',
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      credentials: true, //access-control-allow-credentials:true
-    })
-  );
+// app.use(
+//     cors({
+//       origin: 'http://localhost:3000',
+//       methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//       credentials: true, //access-control-allow-credentials:true
+//     })
+//   );
+
+app.use(cors());
 app.use(signinRouter);
 app.use(signupRouter);
 app.use(secretStuffRouters);
